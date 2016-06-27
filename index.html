@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
         <script src="bootstrap/js/bootstrap.min.js"></script>
        <script type="text/javascript" src="/webiopi.js"></script>
+       <script type="text/javascript" src="graficas/js/jquery.min.js"></script>
 
     <style>
         table {
@@ -39,6 +40,61 @@
           console.log("apagar  las luces")
             location.href=apagarluces;
         }
+
+    // funciones para datos de la gráfica xy
+    
+    $(function () {
+                    $('#monitor').highcharts({
+                        title: {
+                            text: 'Sensor de Temperatura',
+                            x: -20 //center
+                        },
+                        subtitle: {
+                            text: 'Origen: Raspberry- botsLauyader',
+                            x: -20
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Temperature (°C)'
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'
+                            }]
+                        },
+                        tooltip: {
+                            valueSuffix: '°C'
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        series: [
+                        {
+                            name: 'Humedad',
+                            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                        }, 
+
+
+                        {
+                            name: 'Sensor',
+                            data: [4.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                        },
+
+
+                        ]
+                    });
+                });
+
+
+
 
 
      // Fin de la declaración de la funciones    
@@ -84,11 +140,8 @@
         #monitor{
           background: #8eceea;
           padding: 10px;
-           
-          
-          
-          border-top-left-radius: 15px;
-          border-bottom-right-radius: 15px;
+       
+
         }
 
         #datos{
@@ -106,7 +159,8 @@
 
 </head>
 <body background="raspberrypu.jpg">
-
+<script src="graficas/js/highcharts.js"></script>
+<script src="graficas/js/modules/exporting.js"></script>
 
 <div class="container">
   <div   align="center" id="tope" class="row well  ">
@@ -153,7 +207,7 @@
            <h4>Monitor</h4>
 
           </div>
-          <div id="monitor" class="row">
+          <div  id="monitor" style="min-width: 310px;  height: 300px; margin: 0 auto"> class="row">
           <img width="200" src="esfera.png">
           </div>
        </div> <!-- fin de la segunda columna de control del vehiculo -->
